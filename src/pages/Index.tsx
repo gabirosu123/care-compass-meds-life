@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Layout } from '@/components/Layout';
 import { DashboardStats } from '@/components/DashboardStats';
@@ -6,7 +5,7 @@ import { MedicationCard } from '@/components/MedicationCard';
 import { UpcomingReminders } from '@/components/UpcomingReminders';
 import { HealthMetrics } from '@/components/HealthMetrics';
 import { Button } from '@/components/ui/button';
-import { Plus, Calendar } from 'lucide-react';
+import { Plus, Calendar, Activity, User } from 'lucide-react';
 
 const todaysMedications = [
   {

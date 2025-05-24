@@ -34,7 +34,7 @@ const menuItems = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -53,6 +53,8 @@ export function AppSidebar() {
         : "hover:bg-medical-50 text-slate-700 hover:text-medical-700"
     }`;
   };
+
+  const collapsed = state === "collapsed";
 
   return (
     <Sidebar className={`border-r border-gray-200 bg-white/95 backdrop-blur-sm ${collapsed ? "w-16" : "w-64"}`}>
