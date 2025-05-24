@@ -6,6 +6,23 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
+interface BaseQuestion {
+  id: string;
+  text: string;
+  type: 'multiple-choice' | 'text';
+}
+
+interface MultipleChoiceQuestion extends BaseQuestion {
+  type: 'multiple-choice';
+  options: string[];
+}
+
+interface TextQuestion extends BaseQuestion {
+  type: 'text';
+}
+
+type Question = MultipleChoiceQuestion | TextQuestion;
+
 interface WeeklyQuestionsProps {
   week: number;
 }
@@ -13,8 +30,8 @@ interface WeeklyQuestionsProps {
 export const WeeklyQuestions: React.FC<WeeklyQuestionsProps> = ({ week }) => {
   const [responses, setResponses] = useState<Record<string, string>>({});
 
-  const getWeekQuestions = (week: number) => {
-    const questions = {
+  const getWeekQuestions = (week: number): Question[] => {
+    const questions: Record<number, Question[]> = {
       1: [
         {
           id: 'incorporation',
@@ -51,7 +68,7 @@ export const WeeklyQuestions: React.FC<WeeklyQuestionsProps> = ({ week }) => {
       ]
     };
     
-    return questions[week as keyof typeof questions] || [];
+    return questions[week] || [];
   };
 
   const handleResponseChange = (questionId: string, value: string) => {
@@ -85,7 +102,7 @@ export const WeeklyQuestions: React.FC<WeeklyQuestionsProps> = ({ week }) => {
             <div className="space-y-3">
               <p className="font-medium text-slate-800">{question.text}</p>
               
-              {question.type === 'multiple-choice' && question.options && (
+              {question.type === 'multiple-choice' && (
                 <RadioGroup
                   value={responses[question.id] || ''}
                   onValueChange={(value) => handleResponseChange(question.id, value)}
