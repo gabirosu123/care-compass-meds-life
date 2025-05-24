@@ -9,7 +9,8 @@ import {
   File,
   Bell,
   Heart,
-  Clock
+  Clock,
+  BarChart3
 } from 'lucide-react';
 import {
   Sidebar,
@@ -26,6 +27,7 @@ import {
 const menuItems = [
   { title: "Dashboard", url: "/", icon: Activity },
   { title: "My Medications", url: "/medications", icon: Pill },
+  { title: "Treatment Tracker", url: "/tracker", icon: BarChart3 },
   { title: "Schedule", url: "/schedule", icon: Calendar },
   { title: "Reminders", url: "/reminders", icon: Bell },
   { title: "Health Records", url: "/records", icon: File },

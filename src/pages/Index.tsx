@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Layout } from '@/components/Layout';
 import { DashboardStats } from '@/components/DashboardStats';
@@ -99,20 +98,6 @@ const Index = () => {
             <UpcomingReminders />
             <HealthMetrics />
           </div>
-        </div>
-
-        {/* Treatment Tracker Feature */}
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 sm:p-6 border border-yellow-200">
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">📊 Treatment Tracker</h3>
-          <p className="text-slate-600 mb-4 text-sm sm:text-base">
-            Track your daily medication progress and reflect on your treatment journey with our weekly tracker.
-          </p>
-          <Button 
-            className="bg-yellow-500 hover:bg-yellow-600 text-white"
-            onClick={() => window.location.href = '/tracker'}
-          >
-            Start Tracking
-          </Button>
         </div>
 
         {/* Mobile-optimized Quick Actions */}
