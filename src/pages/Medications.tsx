@@ -5,7 +5,7 @@ import { MedicationCard } from '@/components/MedicationCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Plus, Search, Filter } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 
 const allMedications = [
   {
@@ -63,15 +63,11 @@ const Medications = () => {
     <Layout>
       <div className="space-y-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="flex flex-col justify-start items-start gap-4">
           <div>
             <h1 className="text-3xl font-bold text-slate-800 mb-2">My Medications</h1>
-            <p className="text-slate-600">Manage your current prescriptions and medication schedule</p>
+            <p className="text-slate-600">View your current prescriptions and medication schedule</p>
           </div>
-          <Button className="bg-medical-500 hover:bg-medical-600 text-white">
-            <Plus className="h-4 w-4 mr-2" />
-            Add New Medication
-          </Button>
         </div>
 
         {/* Filters and Search */}
@@ -128,7 +124,7 @@ const Medications = () => {
         <div className="bg-orange-50 border border-orange-200 rounded-xl p-6">
           <h3 className="text-lg font-semibold text-orange-800 mb-2">⚠️ Low Stock Alert</h3>
           <p className="text-orange-700 mb-4">
-            You have medications running low. Consider ordering refills soon.
+            You have medications running low. Please contact your healthcare provider for refills.
           </p>
           <div className="flex flex-wrap gap-2">
             <span className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">
@@ -139,7 +135,7 @@ const Medications = () => {
             </span>
           </div>
           <Button className="mt-4 bg-orange-600 hover:bg-orange-700 text-white">
-            Order Refills
+            Contact Healthcare Provider
           </Button>
         </div>
       </div>

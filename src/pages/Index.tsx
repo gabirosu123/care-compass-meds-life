@@ -6,7 +6,7 @@ import { MedicationCard } from '@/components/MedicationCard';
 import { UpcomingReminders } from '@/components/UpcomingReminders';
 import { HealthMetrics } from '@/components/HealthMetrics';
 import { Button } from '@/components/ui/button';
-import { Plus, Calendar, Activity, User } from 'lucide-react';
+import { Calendar, Activity, User } from 'lucide-react';
 
 const todaysMedications = [
   {
@@ -58,10 +58,6 @@ const Index = () => {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button className="bg-medical-500 hover:bg-medical-600 text-white touch-manipulation h-12">
-              <Plus className="h-4 w-4 mr-2" />
-              Add Medication
-            </Button>
             <Button variant="outline" className="border-medical-200 text-medical-700 hover:bg-medical-50 touch-manipulation h-12">
               <Calendar className="h-4 w-4 mr-2" />
               View Schedule
@@ -108,11 +104,7 @@ const Index = () => {
         {/* Mobile-optimized Quick Actions */}
         <div className="bg-gradient-to-r from-medical-50 to-health-50 rounded-xl p-4 sm:p-6 border border-gray-200">
           <h3 className="text-lg font-semibold text-slate-800 mb-4">Quick Actions</h3>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            <Button variant="outline" className="h-auto p-3 sm:p-4 flex flex-col items-center gap-2 hover:bg-white touch-manipulation">
-              <Plus className="h-5 w-5 text-medical-600" />
-              <span className="text-xs sm:text-sm">Add Medication</span>
-            </Button>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             <Button variant="outline" className="h-auto p-3 sm:p-4 flex flex-col items-center gap-2 hover:bg-white touch-manipulation">
               <Calendar className="h-5 w-5 text-health-600" />
               <span className="text-xs sm:text-sm">Set Reminder</span>
