@@ -21,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/medications" element={<Medications />} />
           <Route path="/medications/tracker" element={<TreatmentTracker />} />
+          <Route path="/medications/:medicationId/tracker" element={<TreatmentTracker />} />
           {/* Placeholder routes for future pages */}
           <Route path="/schedule" element={<Index />} />
           <Route path="/reminders" element={<Index />} />

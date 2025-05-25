@@ -1,25 +1,67 @@
 
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { WeeklyTracker } from '@/components/tracker/WeeklyTracker';
 import { TrackerProgress } from '@/components/tracker/TrackerProgress';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, CheckCircle, AlertCircle } from 'lucide-react';
+import { Calendar, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+const medicationData = {
+  "lisinopril": { name: "Lisinopril", dosage: "10mg" },
+  "metformin": { name: "Metformin", dosage: "500mg" },
+  "atorvastatin": { name: "Atorvastatin", dosage: "20mg" },
+  "aspirin": { name: "Aspirin", dosage: "81mg" },
+  "vitamin-d3": { name: "Vitamin D3", dosage: "1000 IU" },
+  "omega-3": { name: "Omega-3", dosage: "1000mg" }
+};
 
 const TreatmentTracker = () => {
+  const { medicationId } = useParams();
+  const navigate = useNavigate();
   const [currentWeek, setCurrentWeek] = useState(1);
   const totalWeeks = 10;
+
+  const medication = medicationId ? medicationData[medicationId as keyof typeof medicationData] : null;
+  const isGeneralTracker = !medicationId;
+
+  const getPageTitle = () => {
+    if (isGeneralTracker) {
+      return "Treatment Tracker";
+    }
+    return medication ? `${medication.name} Treatment Tracker` : "Medication Tracker";
+  };
+
+  const getPageDescription = () => {
+    if (isGeneralTracker) {
+      return "A personal planner to help you incorporate your treatment into your daily routine";
+    }
+    return medication 
+      ? `Track your ${medication.name} ${medication.dosage} treatment progress`
+      : "Track your medication treatment progress";
+  };
 
   return (
     <Layout>
       <div className="space-y-6">
         {/* Header */}
         <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-4">
+            <Button 
+              variant="outline" 
+              onClick={() => navigate('/medications')}
+              className="flex items-center gap-2"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Medications
+            </Button>
+          </div>
           <div>
-            <h1 className="text-3xl font-bold text-slate-800 mb-2">Treatment Tracker</h1>
+            <h1 className="text-3xl font-bold text-slate-800 mb-2">{getPageTitle()}</h1>
             <p className="text-slate-600">
-              A personal planner to help you incorporate your treatment into your daily routine
+              {getPageDescription()}
             </p>
           </div>
         </div>
@@ -30,7 +72,9 @@ const TreatmentTracker = () => {
         {/* Taking Medication Guidelines */}
         <Card className="bg-gradient-to-r from-medical-50 to-health-50 border-medical-200">
           <CardHeader>
-            <CardTitle className="text-lg text-medical-800">Taking Your Medication</CardTitle>
+            <CardTitle className="text-lg text-medical-800">
+              {medication ? `Taking Your ${medication.name}` : "Taking Your Medication"}
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex items-start gap-3">

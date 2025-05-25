@@ -3,7 +3,8 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Pill, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Clock, Pill, CheckCircle, AlertTriangle, BarChart3 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface MedicationCardProps {
   name: string;
@@ -12,6 +13,7 @@ interface MedicationCardProps {
   status: 'taken' | 'pending' | 'missed';
   frequency: string;
   pillsLeft?: number;
+  medicationId?: string;
 }
 
 export const MedicationCard: React.FC<MedicationCardProps> = ({
@@ -20,8 +22,11 @@ export const MedicationCard: React.FC<MedicationCardProps> = ({
   time,
   status,
   frequency,
-  pillsLeft
+  pillsLeft,
+  medicationId
 }) => {
+  const navigate = useNavigate();
+
   const getStatusColor = () => {
     switch (status) {
       case 'taken':
@@ -46,6 +51,11 @@ export const MedicationCard: React.FC<MedicationCardProps> = ({
       default:
         return <Pill className="h-4 w-4" />;
     }
+  };
+
+  const handleTrackerClick = () => {
+    const medId = medicationId || name.toLowerCase().replace(/\s+/g, '-');
+    navigate(`/medications/${medId}/tracker`);
   };
 
   return (
@@ -83,16 +93,26 @@ export const MedicationCard: React.FC<MedicationCardProps> = ({
           )}
         </div>
         
-        {status === 'pending' && (
-          <div className="flex gap-2">
-            <Button className="flex-1 bg-health-500 hover:bg-health-600 text-white">
-              Mark as Taken
-            </Button>
-            <Button variant="outline" className="flex-1">
-              Skip Dose
-            </Button>
-          </div>
-        )}
+        <div className="flex gap-2">
+          {status === 'pending' && (
+            <>
+              <Button className="flex-1 bg-health-500 hover:bg-health-600 text-white">
+                Mark as Taken
+              </Button>
+              <Button variant="outline" className="flex-1">
+                Skip Dose
+              </Button>
+            </>
+          )}
+          <Button 
+            onClick={handleTrackerClick}
+            variant="outline" 
+            className="w-full border-medical-300 text-medical-600 hover:bg-medical-50"
+          >
+            <BarChart3 className="h-4 w-4 mr-2" />
+            Tracker
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

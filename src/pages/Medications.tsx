@@ -5,11 +5,11 @@ import { MedicationCard } from '@/components/MedicationCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, Filter, BarChart3 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Search, Filter } from 'lucide-react';
 
 const allMedications = [
   {
+    id: "lisinopril",
     name: "Lisinopril",
     dosage: "10mg",
     time: "8:00 AM",
@@ -18,6 +18,7 @@ const allMedications = [
     pillsLeft: 25
   },
   {
+    id: "metformin",
     name: "Metformin",
     dosage: "500mg",
     time: "12:00 PM & 6:00 PM",
@@ -26,6 +27,7 @@ const allMedications = [
     pillsLeft: 18
   },
   {
+    id: "atorvastatin",
     name: "Atorvastatin",
     dosage: "20mg",
     time: "8:00 PM",
@@ -34,6 +36,7 @@ const allMedications = [
     pillsLeft: 3
   },
   {
+    id: "aspirin",
     name: "Aspirin",
     dosage: "81mg",
     time: "8:00 AM",
@@ -42,6 +45,7 @@ const allMedications = [
     pillsLeft: 45
   },
   {
+    id: "vitamin-d3",
     name: "Vitamin D3",
     dosage: "1000 IU",
     time: "8:00 AM",
@@ -50,6 +54,7 @@ const allMedications = [
     pillsLeft: 60
   },
   {
+    id: "omega-3",
     name: "Omega-3",
     dosage: "1000mg",
     time: "8:00 PM",
@@ -60,8 +65,6 @@ const allMedications = [
 ];
 
 const Medications = () => {
-  const navigate = useNavigate();
-
   return (
     <Layout>
       <div className="space-y-8">
@@ -71,15 +74,6 @@ const Medications = () => {
             <h1 className="text-3xl font-bold text-slate-800 mb-2">My Medications</h1>
             <p className="text-slate-600">View your current prescriptions and medication schedule</p>
           </div>
-          
-          {/* Treatment Tracker Button */}
-          <Button 
-            onClick={() => navigate('/medications/tracker')}
-            className="bg-medical-500 hover:bg-medical-600 text-white"
-          >
-            <BarChart3 className="h-4 w-4 mr-2" />
-            Treatment Tracker
-          </Button>
         </div>
 
         {/* Filters and Search */}
@@ -119,9 +113,10 @@ const Medications = () => {
 
         {/* Medications Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allMedications.map((medication, index) => (
+          {allMedications.map((medication) => (
             <MedicationCard
-              key={index}
+              key={medication.id}
+              medicationId={medication.id}
               name={medication.name}
               dosage={medication.dosage}
               time={medication.time}
