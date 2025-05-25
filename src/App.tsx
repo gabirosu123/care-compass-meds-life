@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Medications from "./pages/Medications";
 import TreatmentTracker from "./pages/TreatmentTracker";
 import Funding from "./pages/Funding";
+import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,8 +25,8 @@ const App = () => (
           <Route path="/medications/tracker" element={<TreatmentTracker />} />
           <Route path="/medications/:medicationId/tracker" element={<TreatmentTracker />} />
           <Route path="/funding" element={<Funding />} />
+          <Route path="/schedule" element={<Schedule />} />
           {/* Placeholder routes for future pages */}
-          <Route path="/schedule" element={<Index />} />
           <Route path="/reminders" element={<Index />} />
           <Route path="/records" element={<Index />} />
           <Route path="/monitoring" element={<Index />} />
