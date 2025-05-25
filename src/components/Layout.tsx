@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { Bell, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { NotesDialog } from "@/components/NotesDialog";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -28,6 +29,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
             
             <div className="flex items-center gap-2">
+              <NotesDialog />
               <Button variant="ghost" size="icon" className="relative h-10 w-10 touch-manipulation">
                 <Bell className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full animate-pulse-soft"></span>

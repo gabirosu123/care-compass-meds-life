@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { format, isSameDay, addDays, addWeeks } from "date-fns";
-import { Clock, Pill, Stethoscope, Plus, Calendar as CalendarIcon } from "lucide-react";
+import { Clock, Pill, Stethoscope, Plus, Calendar as CalendarIcon, StickyNote } from "lucide-react";
 
 // Mock data for appointments and events
 const mockEvents = [
@@ -52,6 +52,20 @@ const mockEvents = [
     medication: 'Metformin 500mg',
     daysSupply: 90,
     description: 'Contact pharmacy for refill'
+  },
+  {
+    id: '6',
+    type: 'note',
+    title: 'Patient Note',
+    date: new Date(2024, 11, 27),
+    description: 'Feeling much better today. The new medication seems to be working well.'
+  },
+  {
+    id: '7',
+    type: 'note',
+    title: 'Patient Note',
+    date: new Date(2024, 11, 25),
+    description: 'Had some mild side effects yesterday - slight nausea in the morning.'
   }
 ];
 
@@ -86,6 +100,8 @@ const Schedule = () => {
         return <Pill className="h-4 w-4" />;
       case 'assessment':
         return <Clock className="h-4 w-4" />;
+      case 'note':
+        return <StickyNote className="h-4 w-4" />;
       default:
         return <CalendarIcon className="h-4 w-4" />;
     }
@@ -99,6 +115,8 @@ const Schedule = () => {
         return 'bg-health-100 text-health-800 border-health-200';
       case 'assessment':
         return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 'note':
+        return 'bg-amber-100 text-amber-800 border-amber-200';
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200';
     }
@@ -227,7 +245,7 @@ const Schedule = () => {
                         </div>
                       </div>
                       <Badge variant="outline" className="capitalize">
-                        {event.type}
+                        {event.type === 'note' ? 'Patient Note' : event.type}
                       </Badge>
                     </div>
                   </div>
