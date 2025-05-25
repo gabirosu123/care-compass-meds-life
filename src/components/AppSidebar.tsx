@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
@@ -8,7 +9,8 @@ import {
   File,
   Bell,
   Heart,
-  Clock
+  Clock,
+  CreditCard
 } from 'lucide-react';
 import {
   Sidebar,
@@ -25,6 +27,7 @@ import {
 const menuItems = [
   { title: "Dashboard", url: "/", icon: Activity },
   { title: "My Medications", url: "/medications", icon: Pill },
+  { title: "Funding", url: "/funding", icon: CreditCard },
   { title: "Schedule", url: "/schedule", icon: Calendar },
   { title: "Reminders", url: "/reminders", icon: Bell },
   { title: "Health Records", url: "/records", icon: File },
