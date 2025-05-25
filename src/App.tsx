@@ -20,7 +20,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/medications" element={<Medications />} />
-          <Route path="/tracker" element={<TreatmentTracker />} />
+          <Route path="/medications/tracker" element={<TreatmentTracker />} />
           {/* Placeholder routes for future pages */}
           <Route path="/schedule" element={<Index />} />
           <Route path="/reminders" element={<Index />} />

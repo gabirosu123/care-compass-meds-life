@@ -5,7 +5,8 @@ import { MedicationCard } from '@/components/MedicationCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, BarChart3 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const allMedications = [
   {
@@ -59,6 +60,8 @@ const allMedications = [
 ];
 
 const Medications = () => {
+  const navigate = useNavigate();
+
   return (
     <Layout>
       <div className="space-y-8">
@@ -68,6 +71,15 @@ const Medications = () => {
             <h1 className="text-3xl font-bold text-slate-800 mb-2">My Medications</h1>
             <p className="text-slate-600">View your current prescriptions and medication schedule</p>
           </div>
+          
+          {/* Treatment Tracker Button */}
+          <Button 
+            onClick={() => navigate('/medications/tracker')}
+            className="bg-medical-500 hover:bg-medical-600 text-white"
+          >
+            <BarChart3 className="h-4 w-4 mr-2" />
+            Treatment Tracker
+          </Button>
         </div>
 
         {/* Filters and Search */}
